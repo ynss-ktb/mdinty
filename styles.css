@@ -1,0 +1,393 @@
+:root{
+  --bg: #eef1f6;
+  --surface: rgba(255,255,255,0.7);
+  --card: rgba(255,255,255,0.65);
+  --text: #0f172a;
+  --muted: #475569;
+  --shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
+  --radius: 18px;
+}
+
+*{ box-sizing: border-box; }
+
+body{
+  margin: 0;
+  font-family: 'Inter', sans-serif;
+  background: radial-gradient(1200px 600px at 20% 10%, #dbeafe 0%, transparent 60%),
+              radial-gradient(900px 500px at 80% 30%, #dcfce7 0%, transparent 55%),
+              var(--bg);
+  color: var(--text);
+}
+
+.container{
+  width: min(420px, 92vw);
+  margin: 18px auto;
+  padding: 14px;
+  border-radius: var(--radius);
+  background: var(--surface);
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(10px);
+}
+
+/* Header */
+.header{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 10px 16px;
+}
+
+.app-name{
+  margin: 0;
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: -0.6px;
+}
+
+.app-logo-wrap{
+  width: 42px;
+  height: 42px;
+  border-radius: 14px;
+  background: rgba(255,255,255,0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8px 18px rgba(0,0,0,0.08);
+}
+
+.app-logo{
+  width: 28px;
+  height: 28px;
+  object-fit: contain;
+}
+
+/* Cards */
+main{
+  display: grid;
+  gap: 12px;
+  padding: 0 6px 84px; /* نخلي بلاصة للفوتر */
+}
+
+.card{
+  background: var(--card);
+  border-radius: var(--radius);
+  padding: 14px 14px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.06);
+  border: 1px solid rgba(255,255,255,0.6);
+}
+
+.card h2{
+  margin: 0 0 6px;
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--text);
+}
+
+.card p{
+  margin: 0;
+  font-size: 13px;
+  color: var(--muted);
+  line-height: 1.35;
+}
+
+.card button{
+  margin-top: 10px;
+  width: 100%;
+  border: none;
+  border-radius: 14px;
+  padding: 11px 12px;
+  font-weight: 600;
+  font-family: 'Inter', sans-serif;
+  cursor: pointer;
+  background: #0f172a;
+  color: white;
+}
+
+/* Footer fixed bottom inside container */
+.footer{
+  position: sticky;
+  bottom: 0;
+  margin-top: 10px;
+  background: rgba(255,255,255,0.75);
+  border-radius: 16px;
+  border: 1px solid rgba(255,255,255,0.65);
+  box-shadow: 0 14px 30px rgba(15, 23, 42, 0.12);
+  backdrop-filter: blur(12px);
+}
+
+.bottom-nav{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 10px 6px;
+}
+
+.nav-item{
+  text-decoration: none;
+  color: var(--muted);
+  display: flex;
+  flex-direction: column; /* الأيقونة فوق الكلمة */
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  font-weight: 600;
+  min-width: 80px;
+  padding: 8px 6px;
+  border-radius: 14px;
+}
+
+.nav-icon{
+  width: 22px;
+  height: 22px;
+  object-fit: contain;
+}
+
+.nav-item:hover{
+  background: rgba(15, 23, 42, 0.06);
+  color: var(--text);
+}
+.card-icon{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.card-content{
+  flex: 1;
+}
+
+.card-logo{
+  width: 42px;      /* حجم واضح لضعف البصر */
+  height: 42px;
+  object-fit: contain;
+  opacity: 0.9;
+}
+.pharmacy-name{
+  margin-bottom: 10px;
+}
+
+.call-btn{
+  width: 100%;
+  padding: 11px 12px;
+  border: none;
+  border-radius: 14px;
+  background: #37ef04;
+  color: #111111;
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+.card-link{
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* النص يسار – اللوغو يمين */
+  gap: 12px;
+  width: 100%;
+  text-decoration: none;
+  color: inherit;
+}
+.home-news-header{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  margin-bottom:8px;
+}
+
+.home-news-header h2{
+  margin:0;
+  font-size:15px;
+  font-weight:900;
+}
+
+.home-news-more{
+  font-size:12px;
+  font-weight:800;
+  color:var(--muted);
+}
+
+/* لائحة العناوين */
+.news-list{
+  list-style:none;
+  padding:0;
+  margin:0;
+}
+
+.news-list li{
+  padding:8px 0;
+  border-bottom:1px solid rgba(0,0,0,0.06);
+  font-size:13px;
+  line-height:1.6;
+}
+
+.news-list li:last-child{
+  border-bottom:none;
+}
+
+.news-list a{
+  text-decoration:none;
+  color:var(--text);
+  font-weight:700;
+}
+
+/* Scroll صغير داخل البطاقة */
+.scroll-mini{
+  max-height: 140px;     /* بدّلها إذا بغيتي أكثر/أقل */
+  overflow-y: auto;
+  padding-left: 4px;
+}
+.prayer-head{
+  display:flex;
+  align-items:flex-start;
+  justify-content:space-between;
+  gap:10px;
+  margin-bottom:8px;
+}
+
+.prayer-head h2{
+  margin:0;
+  font-size:15px;
+  font-weight:900;
+}
+
+.prayer-date{
+  font-size:12px;
+  font-weight:800;
+  color:var(--muted);
+  background: rgba(0,0,0,0.05);
+  padding:6px 10px;
+  border-radius:999px;
+  white-space:nowrap;
+}
+
+.prayer-next{
+  margin:0;
+  font-size:13px;
+  line-height:1.6;
+  font-weight:800;
+}
+
+ .prayer-now{
+  margin:10px 0 0;
+  font-size:12px;
+  font-weight:800;
+  color:var(--muted);
+  text-align:right;
+}
+
+
+.prayer-row span{
+  background: rgba(0,0,0,0.04);
+  padding:6px 10px;
+  border-radius:14px;
+}
+/* عنوان الصلاة مع أيقونة */
+.prayer-head h2{
+  margin:0;
+  font-size:15px;
+  font-weight:900;
+  display:flex;
+  align-items:center;
+  gap:6px;
+}
+
+/* الصلاة القادمة تكون بارزة */
+.prayer-next{
+  margin:10px 0 0;
+  font-size:13px;
+  line-height:1.6;
+  font-weight:900;
+  background: rgba(0,0,0,0.05);
+  padding:10px 12px;
+  border-radius:16px;
+  border: 1px solid rgba(255,255,255,0.65);
+}
+
+/* badge التاريخين أنيق أكثر */
+.prayer-date{
+  font-size:12px;
+  font-weight:900;
+  color:var(--muted);
+  background: rgba(0,0,0,0.05);
+  padding:6px 10px;
+  border-radius:999px;
+  white-space:nowrap;
+  border: 1px solid rgba(255,255,255,0.65);
+}
+.weather-head{
+  display:flex;
+  align-items:flex-start;
+  justify-content:space-between;
+  gap:10px;
+  margin-bottom:10px;
+}
+
+.weather-head h2{
+  margin:0;
+  font-size:15px;
+  font-weight:900;
+}
+
+.weather-day{
+  font-size:12px;
+  font-weight:900;
+  color:var(--muted);
+  background: rgba(0,0,0,0.05);
+  padding:6px 10px;
+  border-radius:999px;
+  border: 1px solid rgba(255,255,255,0.65);
+  white-space:nowrap;
+}
+
+.weather-main{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  background: rgba(0,0,0,0.05);
+  border-radius:16px;
+  padding:12px;
+  border: 1px solid rgba(255,255,255,0.65);
+}
+
+.weather-icon{
+  font-size:34px;
+  font-weight:900;
+  width:52px;
+  text-align:center;
+}
+
+.weather-info{
+  flex:1;
+}
+
+.weather-temp{
+  font-size:22px;
+  font-weight:900;
+  margin-bottom:2px;
+}
+
+.weather-desc{
+  font-size:12px;
+  font-weight:800;
+  color:var(--muted);
+}
+
+.weather-stats{
+  margin-top:10px;
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+  color:var(--muted);
+  font-size:12px;
+  font-weight:800;
+}
+
+.weather-stats span{
+  background: rgba(0,0,0,0.04);
+  padding:6px 10px;
+  border-radius:14px;
+}
+
+

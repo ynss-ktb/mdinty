@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <title>MDINTY</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+           <h1 class="app-name">MDINTY</h1>
+           <div class="app-logo-wrap">
+           <img src="images/logo n_b.png" alt="Logo MDINTY" class="app-logo">
+           </div>
+        </header>
+
+        <main>
+        <!--    <section class="card card-icon">
+               <div class="card-content">
+               <a href="prayer-times.html" style="text-decoration: none; color: inherit;">
+               <h2>مواقيت الصلاة</h2>
+               <p>Prochaine prière : Fajr à 05:30</p>
+               </div>
+               <img src="images/mosque.png" alt="Prière" class="card-logo">
+               </a>
+            </section>  -->
+            <a href="prayer-times.html" class="card-link">
+            <section class="card-content" id="prayerCard">
+            <div class="prayer-head">
+                <h2>🕌 مواقيت الصلاة</h2>
+                <span class="prayer-date" id="prayerDate">... </span>
+                <p class="prayer-now" id="localClock">الساعة الآن: --:--</p>
+            </div>
+
+            <p class="prayer-next" id="prayerNext">جاري التحميل...</p>
+            </section>
+            </a>
+            <script src="prayer-home.js"></script>
+
+            <a href="weather.html" class="card-link">
+            <section class="card-content" id="weatherCard">
+                <div class="weather-head">
+                <h2>🌤️ الطقس</h2>
+                <span class="weather-day" id="weatherDay">...</span>
+                </div>
+
+                <div class="weather-main">
+                <div class="weather-icon" id="weatherIcon">⛅</div>
+
+                <div class="weather-info">
+                    <div class="weather-temp" id="weatherTemp">--°</div>
+                    <div class="weather-desc" id="weatherDesc">جاري التحميل...</div>
+                </div>
+                </div>
+
+                <div class="weather-stats" id="weatherStats">
+                <span>💨 رياح: --</span>
+                <span>🌧️ مطر: --</span>
+                <span>💧 رطوبة: --</span>
+                </div>
+            </section>
+            </a>
+
+            <script src="weather-home.js"></script>
+
+                <!--  <section class="card weather-now" id="weatherNowCard">
+                      <div class="card-text">
+                         <h2>الآن</h2>
+                         <p class="status" id="weatherStatus">غائم</p>
+                     </div>
+
+                      <div class="right-side">
+                         <img id="weatherIcon" src="images/weather-cloudy.png" alt="أيقونة الطقس" class="weather-icon">
+                         <div class="temp" id="weatherTemp">12°</div>
+                     </div>
+                  </section>  -->
+
+            <section class="card card-icon">
+             <a href="pharmacies.html" class="card-link">
+               <div class="card-content">
+                  <h2>صيدليات الحراسة</h2>
+                  </div>
+                  <img src="images/pharmacie.png" alt="صيدلية" class="card-logo">
+               </a>
+           </section>
+
+         <!--  <section class="card card-icon">
+                     <a href="news.html" class="card-link">
+                <div class="card-content">
+                     <h2>  المستجدات</h2>
+                     <p>آخر المستجدات</p>
+                </div>
+                 <img src="images/news.png" alt="الأخبار" class="card-logo">
+                </a>
+            </section>  -->
+
+            <section class="card " onclick="window.location.href='news.html'" style="cursor:pointer;">
+            <div class="home-news-header">
+                <h2>  المستجدات</h2>
+                <span class="home-news-more card-icon">عرض الكل</span>
+            </div>
+
+            <!-- Scroll صغير -->
+            <ul class="news-list scroll-mini" id="homeNewsList">
+                <li>… جاري التحميل</li>
+            </ul>
+            </section>
+
+   
+        </main>
+
+        <footer class="footer">
+  <nav class="bottom-nav">
+    <a href="#" class="nav-item">
+      <img src="images/acceuil.png" alt="Accueil" class="nav-icon">
+      <span>Accueil</span>
+    </a>
+
+    <a href="#" class="nav-item">
+      <img src="images/parametres.png" alt="Paramètres" class="nav-icon">
+      <span>Paramètres</span>
+    </a>
+
+    <a href="#" class="nav-item">
+      <img src="images/Communauté.png" alt="Communauté" class="nav-icon">
+      <span>Communauté</span>
+    </a>
+  </nav>
+</footer>
+
+    </div>
+    <script src="weather-ui.js"></script>
+    <script src="home-news.js"></script>
+</body>
+</html>

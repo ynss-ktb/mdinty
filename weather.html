@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <title>الطقس | MDINTY</title>
+  <link rel="stylesheet" href="weather.css">
+</head>
+
+<body>
+  <div class="container">
+
+    <header class="header">
+      <a href="index.html" class="back-btn">⬅ رجوع</a>
+      <h1>الطقس</h1>
+      <span class="header-space" aria-hidden="true"></span>
+    </header>
+
+    <!-- Top card -->
+    <section class="card top-card">
+      <div class="top-line">
+        <span class="pill" id="cityPill">الرباط</span>
+        <span class="muted" id="updatedAt">...</span>
+      </div>
+
+      <!-- City selector -->
+      <div class="city-selector">
+        <button class="city-btn active" data-city="Rabat">الرباط</button>
+        <button class="city-btn" data-city="Salé">سلا</button>
+        <button class="city-btn" data-city="Temara">تمارة</button>
+      </div>
+
+      <!-- Days toggle -->
+      <div class="days-toggle">
+        <button class="days-btn active" data-days="5">5 أيام</button>
+        <button class="days-btn" data-days="7">7 أيام</button>
+      </div>
+
+      <!-- Today summary -->
+      <div class="today-box">
+        <div>
+          <div class="today-title" id="todayTitle">جاري التحميل...</div>
+          <div class="muted" id="todayDesc">...</div>
+        </div>
+        <div class="today-temp" id="todayTemp">--°</div>
+      </div>
+
+      <button class="refresh-btn" id="refreshBtn">تحديث الطقس</button>
+      <p class="small-muted" id="status">جاري التحميل...</p>
+    </section>
+
+    <!-- Forecast list -->
+    <section class="card">
+      <h2 class="section-h2">التوقعات القادمة</h2>
+      <div class="forecast-list" id="forecastList"></div>
+    </section>
+
+  </div>
+
+  <script src="weather.js"></script>
+  <script src="weather-ui.js"></script>
+</body>
+</html>

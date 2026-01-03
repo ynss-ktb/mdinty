@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <title>الأخبار | MDINTY</title>
+  <link rel="stylesheet" href="news.css">
+</head>
+
+<body>
+  <div class="container">
+
+    <!-- Header (موحّد وبسيط مثل باقي الصفحات) -->
+    <header class="header">
+      <a href="index.html" class="back-btn">⬅ رجوع</a>
+      <h1>المستجدات</h1>
+      <span class="header-space" aria-hidden="true"></span>
+    </header>
+
+    <main>
+
+      <!-- فلتر المدن (شكل فقط حالياً) -->
+      <section class="card filters">
+        <span class="chip">الرباط  سلا  و النواحي </span>
+        <!-- <p>الرباط سلا والنواحي</p> -->
+      </section>
+
+      <!-- ====== أخبار المغرب ====== 
+      <section class="section-title">
+        <h2>أخبار المغرب</h2>
+        <p>3 مقالات كمثال (لاحقاً نجيبوهم تلقائياً من مصدرين).</p>
+      </section>     -->
+
+      <!-- خبر 1 -->
+      <article class="card news-card">
+        <a href="article.html?id=1" class="news-link">
+
+
+            <div class="news-body">
+            <div class="news-top">
+                <h3>طريق تثير احتجاجا في جماعة عامر</h3>
+                <span class="badge">محليات</span>
+            </div>
+
+            <p class="meta">جماعة عامر • سلا</p>
+
+            <p class="text">
+                أثارت وضعية طريق بدوار تابع لجماعة عامر استياء الساكنة بسبب الأضرار
+                التي تعيق التنقل اليومي...
+            </p>
+
+            </div>
+
+        </a>
+        </article>
+
+      <!-- خبر 2 -->
+      <article class="card news-card">
+          <a href="article.html?id=2" class="news-link">
+        <div class="news-body">
+        <div class="news-top">
+            <h3>مالي ترافق الأسود إلى الثمن</h3>
+            <span class="badge">رياضة</span>
+        </div>
+
+        <p class="meta">المغرب • رياضة</p>
+
+        <p class="text">
+            خبر رياضي متعلق بالمنتخب الوطني المغربي (الأسود). اضغط لقراءة المقال كاملاً داخل التطبيق بدون إشهارات.
+        </p>
+        </div>
+            </a>
+        </article>
+
+      <article class="card news-card">
+          <a href="article.html?id=3" class="news-link">
+            <div class="news-body">
+        <div class="news-top">
+            <h3>حديقة الحيوانات بالرباط.. ولادة 80 حيوانا نادرا ومهددا بالانقراض</h3>
+            <span class="badge">مجتمع</span>
+        </div>
+        
+        <p class="meta">المغرب • الرباط</p>
+        <p class="text">
+            أعلنت حديقة الحيوانات الوطنية بالرباط ولادة أكثر من 80 حيواناً منذ بداية 2025،
+            أغلبها ينتمي لأنواع نادرة ومهددة بالانقراض.
+        </p>
+        </div>
+        </a>
+        </article>
+
+
+      <!-- ====== بروموزيون: صور متتابعة فقط ====== -->
+      <section class="card filters">
+        <h5>عروض المحلات    </h5>
+      </section>  
+<!--
+      <section class="promo-strip" aria-label="صور العروض">
+        <img src="images/promo_bim.jpg" alt="عرض BIM">
+        <img src="images/promo_kazyon.JPG" alt="عرض Kazyon">
+        <img src="images/promo_marjane.JPG" alt="عرض Marjane">
+      </section>  
+
+      <section class="promo-list">
+      <article class="promo-vertical">
+        <img src="images/promo_bim.jpg" alt="عرض BIM">
+      </article>
+      <article class="promo-vertical">
+        <img src="images/promo_kazyon.JPG" alt="عرض Kazyon">
+      </article>
+      <article class="promo-vertical">
+        <img src="images/promo_marjane.JPG" alt="عرض Marjane">
+      </article>
+      </section> -->
+        <section class="promo-list">
+
+        <article class="promo-vertical">
+            <img class="promo-img-click"
+                src="images/promo_bim.jpg"
+                alt="عرض BIM"
+                loading="lazy">
+        </article>
+
+        <article class="promo-vertical">
+            <img class="promo-img-click"
+                src="images/promo_kazyon.JPG"
+                alt="عرض Kazyon"
+                loading="lazy">
+        </article>
+
+        <article class="promo-vertical">
+            <img class="promo-img-click"
+                src="images/promo_marjane.JPG"
+                alt="عرض Marjane"
+                loading="lazy">
+        </article>
+
+            </section>
+
+            <!-- Fullscreen Viewer -->
+            <div class="promo-viewer" id="promoViewer" aria-hidden="true">
+            <button class="viewer-close" id="viewerClose" aria-label="إغلاق">✕</button>
+
+    <!-- ملاحظة: pinch zoom كيخدم أفضل داخل عنصر قابل للسكرول -->
+    <div class="viewer-inner" id="viewerInner">
+        <img id="viewerImg" alt="">
+    </div>
+
+    <p class="viewer-hint">قرّب بإصبعين للتكبير/التصغير</p>
+    </div>
+
+    <!-- JS -->
+    <script src="promo-viewer.js"></script>
+
+     
+
+    </main>
+
+  </div>
+</body>
+</html>
