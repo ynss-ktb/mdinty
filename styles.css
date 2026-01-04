@@ -1,11 +1,28 @@
+/* =========================
+   MDINTY — Unified Styles
+   Theme: Choice #1 (Modern + Joyful)
+   ========================= */
+
 :root{
-  --bg: #eef1f6;
-  --surface: rgba(255,255,255,0.7);
-  --card: rgba(255,255,255,0.65);
-  --text: #0f172a;
-  --muted: #475569;
-  --shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
+  /* Backgrounds */
+  --bg: #F8FAFC;
+  --surface: rgba(255,255,255,0.85);
+  --card: rgba(255,255,255,0.92);
+
+  /* Brand */
+  --primary: #2563EB;     /* Blue */
+  --accent: #F59E0B;      /* Amber */
+  --success: #16A34A;     /* Green */
+  --danger: #EF4444;
+
+  /* Text */
+  --text: #0F172A;
+  --muted: #64748B;
+
+  /* UI */
   --radius: 18px;
+  --shadow: 0 14px 34px rgba(2, 6, 23, 0.10);
+  --shadow-soft: 0 10px 25px rgba(2, 6, 23, 0.06);
 }
 
 *{ box-sizing: border-box; }
@@ -13,10 +30,14 @@
 body{
   margin: 0;
   font-family: 'Inter', sans-serif;
-  background: radial-gradient(1200px 600px at 20% 10%, #dbeafe 0%, transparent 60%),
-              radial-gradient(900px 500px at 80% 30%, #dcfce7 0%, transparent 55%),
-              var(--bg);
   color: var(--text);
+
+  /* Modern joyful background */
+  background:
+    radial-gradient(1200px 650px at 15% 10%, rgba(37, 99, 235, 0.20) 0%, transparent 60%),
+    radial-gradient(900px 520px at 85% 25%, rgba(245, 158, 11, 0.18) 0%, transparent 55%),
+    radial-gradient(900px 520px at 55% 90%, rgba(22, 163, 74, 0.14) 0%, transparent 60%),
+    var(--bg);
 }
 
 .container{
@@ -26,10 +47,13 @@ body{
   border-radius: var(--radius);
   background: var(--surface);
   box-shadow: var(--shadow);
-  backdrop-filter: blur(10px);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255,255,255,0.55);
 }
 
-/* Header */
+/* =========================
+   Header
+   ========================= */
 .header{
   display: flex;
   justify-content: space-between;
@@ -40,19 +64,21 @@ body{
 .app-name{
   margin: 0;
   font-size: 22px;
-  font-weight: 700;
+  font-weight: 800;
   letter-spacing: -0.6px;
+  color: var(--primary);
 }
 
 .app-logo-wrap{
-  width: 42px;
-  height: 42px;
-  border-radius: 14px;
-  background: rgba(255,255,255,0.6);
+  width: 44px;
+  height: 44px;
+  border-radius: 16px;
+  background: rgba(255,255,255,0.95);
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 8px 18px rgba(0,0,0,0.08);
+  box-shadow: 0 10px 22px rgba(2, 6, 23, 0.10);
+  border: 1px solid rgba(37, 99, 235, 0.12);
 }
 
 .app-logo{
@@ -61,25 +87,27 @@ body{
   object-fit: contain;
 }
 
-/* Cards */
+/* =========================
+   Main + Cards
+   ========================= */
 main{
   display: grid;
   gap: 12px;
-  padding: 0 6px 84px; /* نخلي بلاصة للفوتر */
+  padding: 0 6px 84px; /* space for footer */
 }
 
 .card{
   background: var(--card);
   border-radius: var(--radius);
   padding: 14px 14px;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.06);
-  border: 1px solid rgba(255,255,255,0.6);
+  box-shadow: var(--shadow-soft);
+  border: 1px solid rgba(2, 6, 23, 0.06);
 }
 
 .card h2{
   margin: 0 0 6px;
   font-size: 15px;
-  font-weight: 700;
+  font-weight: 800;
   color: var(--text);
 }
 
@@ -87,65 +115,49 @@ main{
   margin: 0;
   font-size: 13px;
   color: var(--muted);
-  line-height: 1.35;
+  line-height: 1.45;
 }
 
+/* Buttons (default inside card) */
 .card button{
   margin-top: 10px;
   width: 100%;
   border: none;
   border-radius: 14px;
-  padding: 11px 12px;
-  font-weight: 600;
+  padding: 12px 12px;
+  font-weight: 800;
   font-family: 'Inter', sans-serif;
   cursor: pointer;
-  background: #0f172a;
-  color: white;
+
+  background: var(--primary);
+  color: #fff;
+  box-shadow: 0 10px 20px rgba(37, 99, 235, 0.22);
+  transition: transform .12s ease, box-shadow .12s ease, filter .12s ease;
 }
 
-/* Footer fixed bottom inside container */
-.footer{
-  position: sticky;
-  bottom: 0;
-  margin-top: 10px;
-  background: rgba(255,255,255,0.75);
-  border-radius: 16px;
-  border: 1px solid rgba(255,255,255,0.65);
-  box-shadow: 0 14px 30px rgba(15, 23, 42, 0.12);
-  backdrop-filter: blur(12px);
+.card button:hover{
+  filter: brightness(1.03);
+  box-shadow: 0 12px 24px rgba(37, 99, 235, 0.26);
 }
 
-.bottom-nav{
+.card button:active{
+  transform: scale(0.99);
+}
+
+/* =========================
+   Card links (whole card clickable)
+   ========================= */
+.card-link{
   display: flex;
-  justify-content: space-around;
   align-items: center;
-  padding: 10px 6px;
-}
-
-.nav-item{
+  justify-content: space-between; /* text left - logo right */
+  gap: 12px;
+  width: 100%;
   text-decoration: none;
-  color: var(--muted);
-  display: flex;
-  flex-direction: column; /* الأيقونة فوق الكلمة */
-  align-items: center;
-  gap: 6px;
-  font-size: 11px;
-  font-weight: 600;
-  min-width: 80px;
-  padding: 8px 6px;
-  border-radius: 14px;
+  color: inherit;
 }
 
-.nav-icon{
-  width: 22px;
-  height: 22px;
-  object-fit: contain;
-}
-
-.nav-item:hover{
-  background: rgba(15, 23, 42, 0.06);
-  color: var(--text);
-}
+/* Cards with icon layout */
 .card-icon{
   display: flex;
   align-items: center;
@@ -153,41 +165,52 @@ main{
   gap: 12px;
 }
 
-.card-content{
-  flex: 1;
-}
+.card-content{ flex: 1; }
 
 .card-logo{
-  width: 42px;      /* حجم واضح لضعف البصر */
-  height: 42px;
+  width: 44px;
+  height: 44px;
   object-fit: contain;
-  opacity: 0.9;
+  opacity: 0.95;
+  background: rgba(37, 99, 235, 0.08);
+  padding: 7px;
+  border-radius: 16px;
+  border: 1px solid rgba(37, 99, 235, 0.14);
 }
-.pharmacy-name{
-  margin-bottom: 10px;
-}
+
+/* Pharmacy */
+.pharmacy-name{ margin-bottom: 10px; }
 
 .call-btn{
   width: 100%;
-  padding: 11px 12px;
+  padding: 12px 12px;
   border: none;
   border-radius: 14px;
-  background: #37ef04;
-  color: #111111;
+
+  background: var(--success);
+  color: #ffffff;
+
   font-family: 'Inter', sans-serif;
   font-size: 14px;
-  font-weight: 600;
+  font-weight: 900;
   cursor: pointer;
+
+  box-shadow: 0 12px 22px rgba(22, 163, 74, 0.20);
+  transition: transform .12s ease, filter .12s ease, box-shadow .12s ease;
 }
-.card-link{
-  display: flex;
-  align-items: center;
-  justify-content: space-between; /* النص يسار – اللوغو يمين */
-  gap: 12px;
-  width: 100%;
-  text-decoration: none;
-  color: inherit;
+
+.call-btn:hover{
+  filter: brightness(1.03);
+  box-shadow: 0 14px 26px rgba(22, 163, 74, 0.25);
 }
+
+.call-btn:active{
+  transform: scale(0.99);
+}
+
+/* =========================
+   Home News Card (titles list)
+   ========================= */
 .home-news-header{
   display:flex;
   align-items:center;
@@ -199,15 +222,20 @@ main{
   margin:0;
   font-size:15px;
   font-weight:900;
+  color: var(--text);
 }
 
 .home-news-more{
   font-size:12px;
-  font-weight:800;
-  color:var(--muted);
+  font-weight:900;
+  color: var(--primary);
+  text-decoration: none;
+  background: rgba(37, 99, 235, 0.10);
+  padding: 6px 10px;
+  border-radius: 999px;
+  border: 1px solid rgba(37, 99, 235, 0.14);
 }
 
-/* لائحة العناوين */
 .news-list{
   list-style:none;
   padding:0;
@@ -216,27 +244,31 @@ main{
 
 .news-list li{
   padding:8px 0;
-  border-bottom:1px solid rgba(0,0,0,0.06);
+  border-bottom:1px solid rgba(2,6,23,0.06);
   font-size:13px;
   line-height:1.6;
 }
 
-.news-list li:last-child{
-  border-bottom:none;
-}
+.news-list li:last-child{ border-bottom:none; }
 
 .news-list a{
   text-decoration:none;
   color:var(--text);
-  font-weight:700;
+  font-weight:800;
 }
 
-/* Scroll صغير داخل البطاقة */
+.news-list a:hover{ color: var(--primary); }
+
+/* Mini scroll inside the card */
 .scroll-mini{
-  max-height: 140px;     /* بدّلها إذا بغيتي أكثر/أقل */
+  max-height: 140px;
   overflow-y: auto;
   padding-left: 4px;
 }
+
+/* =========================
+   Prayer card block
+   ========================= */
 .prayer-head{
   display:flex;
   align-items:flex-start;
@@ -249,72 +281,52 @@ main{
   margin:0;
   font-size:15px;
   font-weight:900;
-}
-
-.prayer-date{
-  font-size:12px;
-  font-weight:800;
-  color:var(--muted);
-  background: rgba(0,0,0,0.05);
-  padding:6px 10px;
-  border-radius:999px;
-  white-space:nowrap;
-}
-
-.prayer-next{
-  margin:0;
-  font-size:13px;
-  line-height:1.6;
-  font-weight:800;
-}
-
- .prayer-now{
-  margin:10px 0 0;
-  font-size:12px;
-  font-weight:800;
-  color:var(--muted);
-  text-align:right;
-}
-
-
-.prayer-row span{
-  background: rgba(0,0,0,0.04);
-  padding:6px 10px;
-  border-radius:14px;
-}
-/* عنوان الصلاة مع أيقونة */
-.prayer-head h2{
-  margin:0;
-  font-size:15px;
-  font-weight:900;
   display:flex;
   align-items:center;
   gap:6px;
 }
 
-/* الصلاة القادمة تكون بارزة */
+/* Date pill (Primary) */
+.prayer-date{
+  font-size:12px;
+  font-weight:900;
+  color: var(--primary);
+  background: rgba(37, 99, 235, 0.10);
+  padding:6px 10px;
+  border-radius:999px;
+  white-space:nowrap;
+  border: 1px solid rgba(37, 99, 235, 0.14);
+}
+
+/* Next prayer highlight (Accent) */
 .prayer-next{
   margin:10px 0 0;
   font-size:13px;
   line-height:1.6;
   font-weight:900;
-  background: rgba(0,0,0,0.05);
+  background: rgba(245, 158, 11, 0.12);
   padding:10px 12px;
   border-radius:16px;
-  border: 1px solid rgba(255,255,255,0.65);
+  border: 1px solid rgba(245, 158, 11, 0.18);
 }
 
-/* badge التاريخين أنيق أكثر */
-.prayer-date{
+.prayer-now{
+  margin:10px 0 0;
   font-size:12px;
   font-weight:900;
   color:var(--muted);
-  background: rgba(0,0,0,0.05);
-  padding:6px 10px;
-  border-radius:999px;
-  white-space:nowrap;
-  border: 1px solid rgba(255,255,255,0.65);
+  text-align:right;
 }
+
+.prayer-row span{
+  background: rgba(2,6,23,0.04);
+  padding:6px 10px;
+  border-radius:14px;
+}
+
+/* =========================
+   Weather (Index card)
+   ========================= */
 .weather-head{
   display:flex;
   align-items:flex-start;
@@ -327,16 +339,17 @@ main{
   margin:0;
   font-size:15px;
   font-weight:900;
+  color: var(--text);
 }
 
 .weather-day{
   font-size:12px;
   font-weight:900;
-  color:var(--muted);
-  background: rgba(0,0,0,0.05);
+  color: var(--primary);
+  background: rgba(37, 99, 235, 0.10);
   padding:6px 10px;
   border-radius:999px;
-  border: 1px solid rgba(255,255,255,0.65);
+  border: 1px solid rgba(37, 99, 235, 0.14);
   white-space:nowrap;
 }
 
@@ -345,10 +358,10 @@ main{
   align-items:center;
   justify-content:space-between;
   gap:12px;
-  background: rgba(0,0,0,0.05);
+  background: rgba(37, 99, 235, 0.06);
   border-radius:16px;
   padding:12px;
-  border: 1px solid rgba(255,255,255,0.65);
+  border: 1px solid rgba(37, 99, 235, 0.12);
 }
 
 .weather-icon{
@@ -356,16 +369,16 @@ main{
   font-weight:900;
   width:52px;
   text-align:center;
+  color: var(--accent);
 }
 
-.weather-info{
-  flex:1;
-}
+.weather-info{ flex:1; }
 
 .weather-temp{
   font-size:22px;
   font-weight:900;
   margin-bottom:2px;
+  color: var(--text);
 }
 
 .weather-desc{
@@ -381,13 +394,67 @@ main{
   flex-wrap:wrap;
   color:var(--muted);
   font-size:12px;
-  font-weight:800;
+  font-weight:900;
 }
 
 .weather-stats span{
-  background: rgba(0,0,0,0.04);
+  background: rgba(2, 6, 23, 0.04);
   padding:6px 10px;
   border-radius:14px;
+  border: 1px solid rgba(2, 6, 23, 0.06);
 }
 
+/* =========================
+   Footer (sticky in container)
+   ========================= */
+.footer{
+  position: sticky;
+  bottom: 0;
+  margin-top: 10px;
+  background: rgba(255,255,255,0.92);
+  border-radius: 16px;
+  border: 1px solid rgba(2, 6, 23, 0.06);
+  box-shadow: 0 16px 32px rgba(2, 6, 23, 0.10);
+  backdrop-filter: blur(14px);
+}
 
+.bottom-nav{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 10px 6px;
+}
+
+.nav-item{
+  text-decoration: none;
+  color: var(--muted);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  font-weight: 800;
+  min-width: 80px;
+  padding: 9px 8px;
+  border-radius: 14px;
+  transition: background .15s ease, color .15s ease, transform .12s ease;
+}
+
+.nav-icon{
+  width: 22px;
+  height: 22px;
+  object-fit: contain;
+  opacity: 0.92;
+}
+
+.nav-item:hover{
+  background: rgba(37, 99, 235, 0.10);
+  color: var(--primary);
+}
+
+.nav-item:active{ transform: scale(0.98); }
+
+.nav-item.active{
+  background: rgba(37, 99, 235, 0.14);
+  color: var(--primary);
+}
