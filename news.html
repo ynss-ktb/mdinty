@@ -24,12 +24,19 @@
     </header>
 
     <main>
+        <div class="card">
+          <div class="home-news-header">
+            <h2>أخبار الرباط/سلا/تمارة</h2>
+          </div>
+
+          <p class="muted" id="newsStatus">...</p>
+
+          <div class="scroll-mini">
+            <ul class="news-list" id="newsList"></ul>
+        </div>
+      </div>
 
       <!-- فلتر المدن (شكل فقط حالياً) -->
-      <section class="card filters">
-        <span class="chip">الرباط  سلا  و النواحي </span>
-        <!-- <p>الرباط سلا والنواحي</p> -->
-      </section>
 
       <!-- ====== أخبار المغرب ====== 
       <section class="section-title">
@@ -100,24 +107,6 @@
       <section class="card filters">
         <h5>عروض المحلات    </h5>
       </section>  
-<!--
-      <section class="promo-strip" aria-label="صور العروض">
-        <img src="images/promo_bim.jpg" alt="عرض BIM">
-        <img src="images/promo_kazyon.JPG" alt="عرض Kazyon">
-        <img src="images/promo_marjane.JPG" alt="عرض Marjane">
-      </section>  
-
-      <section class="promo-list">
-      <article class="promo-vertical">
-        <img src="images/promo_bim.jpg" alt="عرض BIM">
-      </article>
-      <article class="promo-vertical">
-        <img src="images/promo_kazyon.JPG" alt="عرض Kazyon">
-      </article>
-      <article class="promo-vertical">
-        <img src="images/promo_marjane.JPG" alt="عرض Marjane">
-      </article>
-      </section> -->
         <section class="promo-list">
 
         <article class="promo-vertical">
@@ -151,17 +140,12 @@
     <div class="viewer-inner" id="viewerInner">
         <img id="viewerImg" alt="">
     </div>
-
     <p class="viewer-hint">قرّب بإصبعين للتكبير/التصغير</p>
     </div>
-
     <!-- JS -->
     <script src="promo-viewer.js"></script>
-
-     
-
     </main>
-
   </div>
+  <script src="news.js"></script>
 </body>
 </html>
