@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>MDINTY Admin - News Review</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800;900&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#eef1f6;
+      --card:rgba(255,255,255,0.86);
+      --text:#0f172a;
+      --muted:#475569;
+      --radius:18px;
+      --shadow:0 10px 25px rgba(0,0,0,0.08);
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family:'Inter', sans-serif;
+      background:var(--bg);
+      color:var(--text);
+    }
+    .container{
+      width:min(680px,92vw);
+      margin:18px auto;
+      padding:14px;
+    }
+    .header{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      margin-bottom:14px;
+    }
+    .header h1{
+      margin:0;
+      font-size:18px;
+      font-weight:900;
+    }
+    .btn{
+      border:none;
+      border-radius:14px;
+      padding:10px 12px;
+      font-weight:900;
+      cursor:pointer;
+      background:#0f172a;
+      color:#fff;
+    }
+    .btn:active{transform:scale(.99)}
+    .btn-secondary{
+      background:rgba(15,23,42,0.08);
+      color:var(--text);
+    }
+    .row{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      align-items:center;
+      justify-content:space-between;
+      margin-bottom:12px;
+    }
+    .pill{
+      background: rgba(0,0,0,0.05);
+      padding:6px 10px;
+      border-radius:999px;
+      font-weight:900;
+      font-size:12px;
+      color:var(--muted);
+    }
+    .card{
+      background:var(--card);
+      border-radius:var(--radius);
+      padding:14px;
+      box-shadow:var(--shadow);
+      border: 1px solid rgba(255,255,255,0.65);
+      margin-bottom:12px;
+    }
+    .title{
+      margin:0 0 6px;
+      font-size:15px;
+      font-weight:900;
+      line-height:1.6;
+    }
+    .meta{
+      display:flex;
+      gap:8px;
+      flex-wrap:wrap;
+      align-items:center;
+      color:var(--muted);
+      font-size:12px;
+      font-weight:700;
+      margin:0 0 10px;
+    }
+    .actions{
+      display:flex;
+      gap:10px;
+      margin-top:10px;
+    }
+    .approve{ background:#16a34a; }
+    .reject{ background:#dc2626; }
+    .status{
+      margin:0;
+      color:var(--muted);
+      font-size:12px;
+      font-weight:800;
+    }
+    .empty{
+      text-align:center;
+      color:var(--muted);
+      font-weight:900;
+      padding:18px 10px;
+    }
+
+    /* ===== URL preview ===== */
+    .url-line{
+      margin-top:10px;
+      display:flex;
+      gap:10px;
+      align-items:center;
+      justify-content:space-between;
+      flex-wrap:wrap;
+    }
+    .url-preview{
+      direction:ltr;
+      unicode-bidi: plaintext;
+      font-weight:900;
+      font-size:12px;
+      color:var(--text);
+      background: rgba(0,0,0,0.04);
+      border:1px solid rgba(255,255,255,0.65);
+      padding:10px 12px;
+      border-radius:14px;
+      max-width:100%;
+      overflow:hidden;
+      text-overflow:ellipsis;
+      white-space:nowrap;
+      flex:1;
+      min-width:240px;
+    }
+    .open-btn{
+      border:none;
+      border-radius:14px;
+      padding:10px 12px;
+      font-weight:900;
+      cursor:pointer;
+      background:#0f172a;
+      color:#fff;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <div class="header">
+      <h1>🛠️ MDINTY — مراجعة الأخبار</h1>
+      <button class="btn btn-secondary" id="refreshBtn">🔄 تحديث</button>
+    </div>
+
+    <div class="row">
+      <span class="pill" id="counterPill">Pending: ...</span>
+      <p class="status" id="statusText">جاري التحميل...</p>
+    </div>
+
+    <div id="list"></div>
+  </div>
+
+<script>
+  const API_BASE = "http://localhost:3000"; // فـ السيرفر: خليه ""
+
+  const listEl = document.getElementById("list");
+  const statusEl = document.getElementById("statusText");
+  const counterEl = document.getElementById("counterPill");
+  document.getElementById("refreshBtn").addEventListener("click", loadPending);
+
+  function esc(s=""){
+    return String(s).replace(/[&<>"']/g, m => ({
+      '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'
+    }[m]));
+  }
+
+  async function apiJson(url, options){
+    const res = await fetch(url, options);
+    if(!res.ok){
+      const text = await res.text().catch(()=> "");
+      throw new Error(`HTTP ${res.status} ${text}`);
+    }
+    return res.json();
+  }
+
+  function normalizeUrl(raw, source=""){
+    let s = String(raw || "").trim();
+
+    // 1) إذا جا فيه href="..."
+    const hrefMatch = s.match(/href\s*=\s*["']([^"']+)["']/i);
+    if (hrefMatch && hrefMatch[1]) s = hrefMatch[1].trim();
+
+    // 2) Relative => Absolute حسب المصدر
+    const baseBySource = {
+      "Hespress": "https://www.hespress.com",
+      "SNRT News": "https://snrtnews.com",
+      "MAP Arabe": "https://www.mapnews.ma",
+      "Le360": "https://fr.le360.ma"
+    };
+
+    if (s.startsWith("/")) {
+      const base = baseBySource[source] || "https://www.mapnews.ma";
+      s = base.replace(/\/$/,"") + s;
+    }
+
+    // 3) حذف spaces و newlines
+    s = s.replace(/\s+/g, "");
+
+    return s;
+  }
+
+  function prettyUrl(u){
+    try{
+      const url = new URL(u);
+      const host = url.host;
+      const seg = (url.pathname || "/").split("/").filter(Boolean);
+      const tail = seg.slice(-2).join("/");
+      let shown = `${host}/${tail || ""}`;
+      try { shown = decodeURIComponent(shown); } catch(_){}
+      if (shown.length > 70) shown = shown.slice(0, 67) + "...";
+      return shown;
+    }catch(e){
+      let s = String(u || "");
+      try { s = decodeURIComponent(s); } catch(_){}
+      if (s.length > 70) s = s.slice(0, 67) + "...";
+      return s;
+    }
+  }
+
+  function render(items){
+    listEl.innerHTML = "";
+    counterEl.textContent = `Pending: ${items.length}`;
+
+    if(!items.length){
+      listEl.innerHTML = `<div class="card empty">ما كاين حتى خبر فـ Pending دابا ✅</div>`;
+      return;
+    }
+
+    for(const it of items){
+      const clean = normalizeUrl(it.url, it.source);
+      const preview = prettyUrl(clean);
+
+      const card = document.createElement("div");
+      card.className = "card";
+
+      card.innerHTML = `
+        <h2 class="title">${esc(it.title)}</h2>
+
+        <div class="meta">
+          <span>🆔 ${esc(it.id)}</span>
+          <span>🏙️ ${esc(it.city || "-")}</span>
+          <span>🕒 ${esc(it.created_at || "")}</span>
+          <span>📰 ${esc(it.source || "-")}</span>
+        </div>
+
+        <div class="url-line">
+          <div class="url-preview" title="${esc(clean)}">${esc(preview)}</div>
+          <button class="open-btn" data-url="${esc(clean)}">فتح</button>
+        </div>
+
+        <div class="actions">
+          <button class="btn approve" data-id="${esc(it.id)}">✅ Approve</button>
+          <button class="btn reject" data-id="${esc(it.id)}">❌ Reject</button>
+        </div>
+      `;
+
+      listEl.appendChild(card);
+    }
+
+    // bind approve/reject
+    listEl.querySelectorAll(".approve").forEach(btn=>{
+      btn.addEventListener("click", ()=> updateStatus(btn.dataset.id, "approve"));
+    });
+    listEl.querySelectorAll(".reject").forEach(btn=>{
+      btn.addEventListener("click", ()=> updateStatus(btn.dataset.id, "reject"));
+    });
+
+    // bind open
+    listEl.querySelectorAll(".open-btn").forEach(btn=>{
+      btn.addEventListener("click", ()=>{
+        const u = btn.dataset.url;
+        window.open(u, "_blank", "noopener");
+      });
+    });
+  }
+
+  async function updateStatus(id, action){
+    try{
+      statusEl.textContent = "جاري التحديث...";
+      await apiJson(`${API_BASE}/api/admin/articles/${Number(id)}/${action}`, { method: "POST" });
+      await loadPending();
+    }catch(e){
+      statusEl.textContent = "وقع مشكل: " + e.message;
+    }
+  }
+
+  async function loadPending(){
+    try{
+      statusEl.textContent = "جاري تحميل Pending...";
+      const data = await apiJson(`${API_BASE}/api/admin/articles?status=pending`);
+      render(data.items || []);
+      statusEl.textContent = "جاهز ✅";
+    }catch(e){
+      statusEl.textContent = "خطأ: " + e.message;
+    }
+  }
+
+  loadPending();
+</script>
+</body>
+</html>
