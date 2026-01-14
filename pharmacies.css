@@ -155,3 +155,95 @@ body{
 .call-btn:active{
   transform: scale(0.99);
 }
+/* City selector */
+.city-selector{
+  display:flex;
+  gap:8px;
+  flex-wrap:wrap;
+}
+
+.city-btn{
+  border:none;
+  background: rgba(0,0,0,0.05);
+  padding:10px 14px;
+  border-radius:999px;
+  font-weight:900;
+  font-size:12px;
+  cursor:pointer;
+  color:var(--text);
+}
+
+.city-btn.active{
+  background:#0f172a;
+  color:#fff;
+}
+
+.city-btn:active{ transform: scale(0.96); }
+
+/* Small tweaks */
+#phStatusCard{ padding: 12px 14px; }
+#phStatus{ margin:0; color: var(--muted); font-size: 13px; font-weight: 800; }
+/* ===== Call icon (replaces old logo at left) ===== */
+.call-icon{
+  border:none;
+  width:44px;
+  height:44px;
+  border-radius:14px;
+  background:#16a34a;
+  color:#fff;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  cursor:pointer;
+}
+
+.call-icon:active{
+  transform: scale(.98);
+}
+
+.call-icon svg{
+  display:block;
+}
+
+/* Make address more readable */
+.details .address{
+  margin-top:10px;
+  font-size:13px;
+  font-weight:900;
+  color:var(--text);
+  background: rgba(0,0,0,0.04);
+  border:1px solid rgba(255,255,255,0.65);
+  padding:10px 12px;
+  border-radius:14px;
+}
+.call-icon{
+  width:48px;
+  height:48px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  border-radius:16px;
+  background: rgba(22,163,74,0.10);
+  border: 1px solid rgba(22,163,74,0.18);
+  color:#16a34a;
+  text-decoration:none;
+  flex-shrink:0;
+}
+.call-icon:active{ transform: scale(.98); }
+
+.details .address{
+  margin-top:10px;
+  font-size:13px;
+  font-weight:900;
+  color:var(--text);
+  background: rgba(0,0,0,0.04);
+  border:1px solid rgba(255,255,255,0.65);
+  padding:10px 12px;
+  border-radius:14px;
+}
+.call-icon.disabled{
+  opacity:.35;
+  cursor:default;
+  background:rgba(0,0,0,0.06);
+  color:#0f172a;
+}

@@ -1,124 +1,116 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="ar" dir="rtl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <title>MDINTY</title>
-    <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800;900&display=swap" rel="stylesheet">
+  <title>Mdinty</title>
+  <link rel="stylesheet" href="styles.css">
 </head>
+
 <body>
-    <div class="container">
-        <header class="header">
-           <h1 class="app-name">MDINTY</h1>
-           <div class="app-logo-wrap">
-           <img src="images/logo n_b.png" alt="Logo MDINTY" class="app-logo">
-           </div>
-        </header>
+  <div class="container">
 
-        <main>
-        <!--    <section class="card card-icon">
-               <div class="card-content">
-               <a href="prayer-times.html" style="text-decoration: none; color: inherit;">
-               <h2>مواقيت الصلاة</h2>
-               <p>Prochaine prière : Fajr à 05:30</p>
-               </div>
-               <img src="images/mosque.png" alt="Prière" class="card-logo">
-               </a>
-            </section>  -->
-            <a href="prayer-times.html" class="card-link">
-            <section class="card-content" id="prayerCard">
-            <div class="prayer-head">
-                <h2>🕌 مواقيت الصلاة</h2>
-                <span class="prayer-date" id="prayerDate">... </span>
-                <p class="prayer-now" id="localClock">الساعة الآن: --:--</p>
+    <!-- Header -->
+    <header class="header">
+      <h1 class="app-title">Mdinty</h1>
+
+      <div class="app-logo-wrap">
+        <img src="images/logo n_b.png" alt="Logo Mdinty" class="app-logo">
+      </div>
+    </header>
+
+    <!-- ====== GRID TOP (Weather + Prayer) ====== -->
+    <main class="home">
+
+      <section class="top-grid">
+
+        <!-- Weather card (Left in your mock, but RTL will display right-to-left.
+             If you want weather visually on LEFT like the mock, we force it with grid order in CSS. -->
+        <a href="weather.html" class="card-link card weather-card" aria-label="الطقس">
+          <div class="card-head">
+            <div class="head-left">
+              <span class="head-ico">🌤️</span>
+              <h2 class="card-h2">الطقس</h2>
+            </div>
+            <span class="pill" id="weatherDay">الأحد</span>
+          </div>
+
+          <div class="w-flat">
+            <div class="w-left">
+              <div class="w-icon" id="weatherIcon">⛅</div>
+              <div class="w-temp" id="weatherTemp">--°</div>
+              <div class="w-desc" id="weatherDesc">جاري التحميل...</div>
             </div>
 
-            <p class="prayer-next" id="prayerNext">جاري التحميل...</p>
-            </section>
-            </a>
-            <script src="prayer-home.js"></script>
-
-            <a href="weather.html" class="card-link">
-            <section class="card-content" id="weatherCard">
-                <div class="weather-head">
-                <h2>🌤️ الطقس</h2>
-                <span class="weather-day" id="weatherDay">...</span>
-                </div>
-
-                <div class="weather-main">
-                <div class="weather-icon" id="weatherIcon">⛅</div>
-
-                <div class="weather-info">
-                    <div class="weather-temp" id="weatherTemp">--°</div>
-                    <div class="weather-desc" id="weatherDesc">جاري التحميل...</div>
-                </div>
-                </div>
-
-                <div class="weather-stats" id="weatherStats">
-                <span>💨 رياح: --</span>
-                <span>🌧️ مطر: --</span>
-                <span>💧 رطوبة: --</span>
-                </div>
-            </section>
-            </a>
-
-            <script src="weather-home.js"></script>
-
-                <!--  <section class="card weather-now" id="weatherNowCard">
-                      <div class="card-text">
-                         <h2>الآن</h2>
-                         <p class="status" id="weatherStatus">غائم</p>
-                     </div>
-
-                      <div class="right-side">
-                         <img id="weatherIcon" src="images/weather-cloudy.png" alt="أيقونة الطقس" class="weather-icon">
-                         <div class="temp" id="weatherTemp">12°</div>
-                     </div>
-                  </section>  -->
-
-            <section class="card card-icon">
-             <a href="pharmacies.html" class="card-link">
-               <div class="card-content">
-                  <h2>صيدليات الحراسة</h2>
-                  </div>
-                  <img src="images/pharmacie.png" alt="صيدلية" class="card-logo">
-               </a>
-           </section>
-
-         <!--  <section class="card card-icon">
-                     <a href="news.html" class="card-link">
-                <div class="card-content">
-                     <h2>  المستجدات</h2>
-                     <p>آخر المستجدات</p>
-                </div>
-                 <img src="images/news.png" alt="الأخبار" class="card-logo">
-                </a>
-            </section>  -->
-
-            <section class="card " onclick="window.location.href='news.html'" style="cursor:pointer;">
-            <div class="home-news-header">
-                <h2>  المستجدات</h2>
-                <span class="home-news-more card-icon">عرض الكل</span>
+            <div class="w-stats">
+              <div class="stat"><span class="s-ico">💨</span><span id="weatherWind">رياح: --</span></div>
+              <div class="stat"><span class="s-ico">🌧️</span><span id="weatherRain">مطر: --</span></div>
+              <div class="stat"><span class="s-ico">💧</span><span id="weatherHum">رطوبة: --</span></div>
             </div>
+          </div>
+        </a>
 
-            <!-- Scroll صغير -->
-            <ul class="news-list scroll-mini" id="homeNewsList">
-                <li>… جاري التحميل</li>
-            </ul>
-            </section>
+        <!-- Prayer card -->
+        <a href="prayer-times.html" class="card-link card prayer-card" aria-label="مواقيت الصلاة">
+        <div class="card-head prayer-head">
+            <div class="head-left prayer-title">
+            <span class="mosque-ico" aria-hidden="true">🕌</span>
+            <h2 class="card-h2">مواقيت الصلاة</h2>
+            </div>
+        </div>
 
-   
-        </main>
+        <div class="inner inner-prayer">
+            <p class="p-remaining" id="prayerDate">...</p>
+            <p class="p-next" id="prayerNext">الصلاة القادمة: ...</p>
+            <!--p class="p-remaining" id="prayerRemaining">متبقي على الصلاة: --:--</p -->
+        </div>
+        </a>
+      </section>
 
-       <footer class="footer">
-        
-      </footer>
+      <!-- ====== Pharmacy banner ====== -->
+      <section class="card pharmacy-banner">
+        <a href="pharmacies.html" class="card-link pharmacy-link">
+            <div class="ph-ico-wrap">
+            <span class="ph-emoji">⚕️</span>
+            </div>
+            <h2 class="ph-title ph-title-center">صيدليات الحراسة</h2>
 
-    </div>
-    <script src="weather-ui.js"></script>
-    <script src="home-news.js"></script>
+        </a>
+      </section>
+
+      <!-- ====== News big card ====== -->
+      <section class="card news-card" id="homeNewsCard" style="cursor:pointer;">
+        <div class="news-head">
+        <h2 class="news-title">الأخبار والتخفيضات</h2>
+        <!--button class="mini-btn" type="button">عرض الكل</button -->
+        </div>
+
+        <ul class="news-list" id="homeNewsList">
+          <li>جاري التحميل...</li>
+        </ul>
+      </section>
+
+    </main>
+
+    <footer class="footer"></footer>
+  </div>
+
+  <!-- scripts (keep yours) -->
+  <script src="weather-home.js"></script>
+  <script src="prayer-home.js"></script>
+  <script src="weather-ui.js"></script>
+  <script src="home-news.js"></script>
+  <script src="prayer-times.js"></script>
+
+
+  <script>
+    // Keep your click to go to news.html
+    document.getElementById("homeNewsCard")?.addEventListener("click", () => {
+      window.location.href = "news.html";
+    });
+  </script>
 </body>
 </html>
